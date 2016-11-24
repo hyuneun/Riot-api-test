@@ -47,15 +47,35 @@ public class StaticController {
 	
 	@RequestMapping("/static/locale/{locale}/item")
 	@ResponseBody
-	public Object getlocalecategorylist(@PathVariable("locale")String locale){
+	public Object getlocaleItemlist(@PathVariable("locale")String locale){
 		return staticManager.getItemList(locale);
 	}
 	@RequestMapping("/static/locale/{locale}/item/{id}")
 	@ResponseBody
-	public Object getlocalecategoryById(@PathVariable String locale,
+	public Object getlocaleItemById(@PathVariable String locale,
 			@PathVariable("id") String id){
 		return staticManager.getLocaleList(locale);
 	}
+	
+	@RequestMapping("/static/locale/{locale}/mastery")
+	@ResponseBody
+	public Object getlocaleMasterylist(@PathVariable("locale")String locale){
+		return staticManager.getMasterylist(locale);
+	}
+	@RequestMapping("/static/locale/{locale}/rune")
+	@ResponseBody
+	public Object getlocaleRunelist(@PathVariable("locale")String locale){
+		return staticManager.getRunelist(locale);
+	}
+	
+	@RequestMapping("/static/locale/{locale}/summoner")
+	@ResponseBody
+	public Object getlocalespell(@PathVariable("locale")String locale){
+		return staticManager.getSummonerSpell(locale);
+	}
+	
+	
+	
 	
 	
 	

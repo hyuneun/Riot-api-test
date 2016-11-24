@@ -23,11 +23,9 @@ public class SummonerDao  {
 	
 	
 	@Transactional(isolation=Isolation.DEFAULT, propagation=Propagation.REQUIRES_NEW)
-	public boolean insertSummoner(LeagueDto dto,SummonerDto summoner){
+	public boolean insertSummoner(SummonerDto summoner) {
 		boolean success=false;
 		try{
-			summonerDBInter.insertleague(dto);
-			summonerDBInter.insertentrys((LeagueEntry)dto.getEntrylist().get(0));
 			summonerDBInter.insertsummoner(summoner);
 			success=true;
 		}catch(Exception e){
@@ -35,11 +33,36 @@ public class SummonerDao  {
 		}
 		return success;
 	}
+	
 	@Transactional(isolation=Isolation.DEFAULT, propagation=Propagation.REQUIRES_NEW)
-	public boolean updateSummoner(LeagueDto dto,SummonerDto summoner){
+	public boolean insertLeague(LeagueDto dto){
+		boolean success=false;
+		try{
+			summonerDBInter.insertleague(dto);
+			summonerDBInter.insertentrys((LeagueEntry)dto.getEntrylist().get(0));
+			success=true;
+		}catch(DataAccessException e){
+			return success;
+		}
+		return success;
+	}
+	
+	
+	@Transactional(isolation=Isolation.DEFAULT, propagation=Propagation.REQUIRES_NEW)
+	public boolean updateSummoner(SummonerDto summoner){
 		boolean success=false;
 		try{
 			summonerDBInter.updateSummoner(summoner);
+			success=true;
+		}catch(Exception e){
+			return success;
+		}
+		return success;
+	}
+	@Transactional(isolation=Isolation.DEFAULT, propagation=Propagation.REQUIRES_NEW)
+	public boolean updateLeague(LeagueDto dto){
+		boolean success=false;
+		try{
 			summonerDBInter.updateleague(dto);
 			summonerDBInter.updateEntries((LeagueEntry)dto.getEntrylist());
 			success=true;
@@ -48,12 +71,19 @@ public class SummonerDao  {
 		}
 		return success;
 	}
+	
 	public SummonerDto selectSummoner(SummonerBean bean){
 		return summonerDBInter.selectsearchData(bean);
 	}
+	
 	public LeagueDto selectLeagueData(Long id){
-		LeagueDto league = summonerDBInter.selectLeagueData(id);
-		league.setEntrylist(summonerDBInter.selectEntryData(league.getEntries()));
+		LeagueDto league = null;
+		try {
+			league = summonerDBInter.selectLeagueData(id);
+			league.setEntrylist(summonerDBInter.selectEntryData(league.getEntries()));
+		} catch (Exception e) {
+			return null;
+		}
 		return league;
 	}
 	

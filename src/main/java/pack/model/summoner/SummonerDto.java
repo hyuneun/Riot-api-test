@@ -4,8 +4,6 @@ public class SummonerDto {
 	private String name,searchDate;
 	private int profileIconId;
 	private long id,revisionDate,summonerLevel;
-	
-	
 	public String getSearchDate() {
 		return searchDate;
 	}

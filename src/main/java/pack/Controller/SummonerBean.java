@@ -4,8 +4,6 @@ public class SummonerBean {
 	private String name,searchDate;
 	private int profileIconId,summonerLevel;
 	private long id,revisionDate;
-	
-	
 	public String getSearchDate() {
 		return searchDate;
 	}

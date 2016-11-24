@@ -1,23 +1,17 @@
 package pack.model.summoner;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
-import net.rithms.riot.dto.League.League;
 import net.rithms.riot.dto.League.LeagueEntry;
-import net.rithms.riot.dto.Summoner.Summoner;
 import pack.Controller.SummonerBean;
 
 public interface SummonerDBInter {
 	@Select("select * from summoner")
 	public List<SummonerDto> selectSummoner();
-	
-	@Select("select * from summoner where name=#{name}")
+	@Select("select id , revisionDate , summonerLevel , profileIconId , name , DATE_FORMAT(searchDate, '%Y-%m-%d %H:%i') as searchDate from "
+			+ " summoner where name=#{name}")
 	public SummonerDto selectsearchData(SummonerBean bean);
 	
 	@Select("select * from league where id=#{id}")

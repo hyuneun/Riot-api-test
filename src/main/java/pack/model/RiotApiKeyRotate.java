@@ -1,6 +1,6 @@
 package pack.model;
 
-import org.aspectj.lang.annotation.Aspect;
+
 import org.springframework.stereotype.Component;
 
 import net.rithms.riot.api.RiotApi;
@@ -15,6 +15,7 @@ public class RiotApiKeyRotate extends RiotApi{
 			"RGAPI-6498944e-01da-4335-a120-d85f8e47933b",
 			"RGAPI-4ddd1110-574c-4a90-8444-3b6b3f9dcd3d",	//우리팀꺼
 			"RGAPI-033e608d-708b-4e5d-97bd-cf6ceafe3356"}; //미림 api
+
 	private int index=0;
 	public RiotApiKeyRotate() {
 		setKey(key[index]);
